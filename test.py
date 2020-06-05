@@ -2,6 +2,24 @@ from __future__ import print_function
 import requests
 from getpass import getpass
 from pprint import pprint
+import os
+import sys
+import ConfigParser
+
+# get application path
+APP_LOCATION = os.path.dirname(os.path.dirname(sys.argv[0]))
+config_default = APP_LOCATION + "/default/cert-manager.conf"
+config_local = APP_LOCATION + "/local/cert-manager.conf"
+
+# read values in from config file
+config = ConfigParser.ConfigParser()
+config.read([config_default, config_local])
+try:
+    CLIENT_ID = config.get("cert-manager", "CLIENT_ID")
+    API_KEY = config.get("cert-manager", "API_KEY")
+    CLIENT_SECRET = config.get("cert-manager", "CLIENT_SECRET")
+except:
+    sys.exit("values missing from cert-manager.conf")  
 
 # uri for request
 uri = "https://cert-manager.com/api/report/v1/ssl-certificates"
