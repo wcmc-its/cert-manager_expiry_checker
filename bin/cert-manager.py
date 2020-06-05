@@ -15,21 +15,21 @@ config_local = APP_LOCATION + "/local/cert-manager.conf"
 config = ConfigParser.ConfigParser()
 config.read([config_default, config_local])
 try:
-    CLIENT_ID = config.get("cert-manager", "CLIENT_ID")
-    API_KEY = config.get("cert-manager", "API_KEY")
-    CLIENT_SECRET = config.get("cert-manager", "CLIENT_SECRET")
+    customerUri = config.get("cert-manager", "customerUri")
+    login = config.get("cert-manager", "login")
+    password = config.get("cert-manager", "password")
 except:
     sys.exit("values missing from cert-manager.conf")  
 
 # uri for request
 uri = "https://cert-manager.com/api/report/v1/ssl-certificates"
-# auth info
-username = "redacted"
-password = getpass()
-customerUri = "redacted"
+# # auth info
+# username = "redacted"
+# password = getpass()
+# customerUri = "redacted"
 
 # authentication headers
-headers = {"login":username,
+headers = {"login":login,
            "password":password,
            "customerUri": customerUri}
 
