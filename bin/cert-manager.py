@@ -20,7 +20,7 @@ try:
     customerUri = config.get("cert-manager", "customerUri")
     login = config.get("cert-manager", "login")
     password = config.get("cert-manager", "password")
-    time_range = config.get("cert-manager", "time_range")
+    time_range = int(config.get("cert-manager", "time_range"))
 except:
     sys.exit("values missing from cert-manager.conf")  
 
