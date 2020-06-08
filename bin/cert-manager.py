@@ -6,6 +6,7 @@ import os
 import sys
 import ConfigParser
 from datetime import datetime, timedelta
+import json
 
 # get application path
 APP_LOCATION = os.path.dirname(os.path.dirname(sys.argv[0]))
@@ -59,4 +60,4 @@ r = requests.post(uri, headers=headers, json=report_data)
 report = r.json()['reports']
 
 for certificate in report:
-    pprint(certificate)
+    print(json.dumps(certificate))
