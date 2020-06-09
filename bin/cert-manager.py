@@ -60,4 +60,7 @@ r = requests.post(uri, headers=headers, json=report_data)
 report = r.json()['reports']
 
 for certificate in report:
+    # turn subject alternative names field into a list so splunk
+    # can read it as a MV field
+    certificate['subjAltNames'] = certificate['subjAltNames'].split('; ')
     print(json.dumps(certificate))
