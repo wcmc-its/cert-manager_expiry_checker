@@ -62,5 +62,7 @@ report = r.json()['reports']
 for certificate in report:
     # turn subject alternative names field into a list so splunk
     # can read it as a MV field
-    certificate['subjAltNames'] = certificate['subjAltNames'].split('; ')
+    if 'subjAltNames' in certificate:
+        certificate['subjAltNames'] = certificate['subjAltNames'].split('; ')
+    
     print(json.dumps(certificate))
